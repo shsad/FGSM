@@ -9,7 +9,7 @@ from PIL import Image
 
 import matplotlib.pyplot as plt
 
-from PGD import PGD
+from PGD import MyPGD
 
 # Data
 use_gpu = torch.cuda.is_available()
@@ -28,7 +28,7 @@ image = Image.open('./data/kobe.jpg')
 x = torchvision.transforms.functional.to_tensor(image)
 x = transforms.Resize(size=(256, 256))(x)
 x = x.unsqueeze(0).to(device)
-PGD_ = PGD(model)
+PGD_ = MyPGD(model)
 output = model(x)
 l = nn.Softmax(dim=1)(output).max(1)[1]
 

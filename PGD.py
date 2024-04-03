@@ -4,7 +4,7 @@ import torch.nn as nn
 from root_class_attack import Attack
 
 # FGM/PGD attack
-class FGM(Attack):
+class MyFGM(Attack):
 
     def __init__(self, model, norm='inf', targeted=False, img_range=(0, 1)):
         super().__init__(model, targeted=targeted, img_range=img_range)
@@ -31,7 +31,7 @@ class FGM(Attack):
 
         return torch.clamp(adv, *self.img_range).detach()
 
-class PGD(FGM):
+class MyPGD(MyFGM):
 
     def __init__(self, model, rand_restarts=0, init_radius=0, iters=10,
                  norm='inf', targeted=False, img_range=(0,1)):
